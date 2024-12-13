@@ -21,4 +21,5 @@ export interface IImage {
 export interface IButton {
   children: ReactNode;
   variant?: "primary" | "secondary" | "danger";
+  onClick?: () => void;
 }
