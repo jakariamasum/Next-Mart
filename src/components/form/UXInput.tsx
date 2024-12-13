@@ -12,7 +12,7 @@ const UXInput = ({
   const { register } = useFormContext();
 
   return (
-    <div className="mt-4">
+    <div className="flex flex-col black py-2">
       {label && (
         <label
           htmlFor={name}
@@ -26,7 +26,7 @@ const UXInput = ({
         type={type}
         id={name}
         placeholder={placeholder}
-        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        className="rounded-lg text-black bg-gray-300 mt-2 p-2  focus:bg-gray-100 focus:outline-none"
         required={required}
         {...props}
       />

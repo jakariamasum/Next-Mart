@@ -13,12 +13,7 @@ interface IProps extends formConfig {
   onSubmit: SubmitHandler<any>;
 }
 
-export default function FXForm({
-  children,
-  onSubmit,
-  defaultValues,
-  resolver,
-}: IProps) {
+const UXForm = ({ children, onSubmit, defaultValues, resolver }: IProps) => {
   const formConfig: formConfig = {};
 
   if (!!defaultValues) {
@@ -38,4 +33,5 @@ export default function FXForm({
       <form onSubmit={submitHandler(onSubmit)}>{children}</form>
     </FormProvider>
   );
-}
+};
+export default UXForm;
