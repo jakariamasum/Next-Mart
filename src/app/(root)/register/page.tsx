@@ -8,10 +8,13 @@ import UXForm from "@/components/form/UXForm";
 import UXInput from "@/components/form/UXInput";
 import UXImage from "@/components/form/UXImage";
 import Button from "@/components/ui/Button";
+import { useUserRegistration } from "@/hooks/auth.hooks";
 
 const Register = () => {
+  const { mutate: handleRegister } = useUserRegistration();
   const onSubmit = (data: FieldValues) => {
     console.log(data);
+    handleRegister(data);
   };
 
   return (

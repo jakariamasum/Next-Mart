@@ -7,10 +7,13 @@ import UXForm from "@/components/form/UXForm";
 import UXInput from "@/components/form/UXInput";
 import Button from "@/components/ui/Button";
 import { FieldValues } from "react-hook-form";
+import { useUserLogin } from "@/hooks/auth.hooks";
 
 const Login = () => {
+  const { mutate: handleLogin } = useUserLogin();
   const onSubmit = (data: FieldValues) => {
     console.log(data);
+    handleLogin(data);
   };
 
   return (
