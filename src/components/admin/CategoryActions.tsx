@@ -6,6 +6,8 @@ import Button from "@/components/ui/Button";
 import UXForm from "@/components/form/UXForm";
 import UXInput from "@/components/form/UXInput";
 import { FieldValues } from "react-hook-form";
+import UXImage from "../form/UXImage";
+import { useCreateCategory } from "@/hooks/category.hooks";
 
 interface ICategory {
   id: string | null;
@@ -14,6 +16,7 @@ interface ICategory {
 
 const CategoryActions = ({ category }: { category: ICategory | null }) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const { mutate: handleCreateCategory } = useCreateCategory();
 
   const openModal = () => {
     setModalOpen(true);
@@ -25,6 +28,7 @@ const CategoryActions = ({ category }: { category: ICategory | null }) => {
 
   const onSubmit = (data: FieldValues) => {
     console.log(data);
+    handleCreateCategory(data);
     closeModal();
   };
 
@@ -53,6 +57,11 @@ const CategoryActions = ({ category }: { category: ICategory | null }) => {
               name="name"
               placeholder="Enter category name"
               label="Category Name"
+            />
+            <UXImage
+              name="image"
+              label="Category Photo (optional)"
+              required={false}
             />
           </div>
 

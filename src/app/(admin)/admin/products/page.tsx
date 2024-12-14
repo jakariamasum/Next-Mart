@@ -1,8 +1,9 @@
 import CategoryActions from "@/components/admin/CategoryActions";
+import { getAllCategories } from "@/services/categoryServices";
+import { ICategory } from "@/types/category.type";
 
 const ProductCategories = async () => {
-  const categories = [{ id: "1", name: "Cat1" }];
-
+  const categories: ICategory[] = await getAllCategories();
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden">
       <div className="flex justify-end mb-4 p-2">
