@@ -3,6 +3,7 @@
 import { envConfig } from "@/config/evgConfig";
 import axiosInstance from "@/lib/axiosInstance";
 import { revalidateTag } from "next/cache";
+import { FieldValues } from "react-hook-form";
 
 export const getSingleUser = async () => {
   try {
@@ -55,6 +56,21 @@ export const deleteleUser = async (id: string) => {
     throw new Error(
       error.response?.data?.message ||
         "An error occurred while deleting the user"
+    );
+  }
+};
+
+export const updateUser = async (id: string, payload: FieldValues) => {
+  try {
+    const { data } = await axiosInstance.put(`/users/${id}`, payload);
+    revalidateTag("users");
+
+    return data.data;
+  } catch (error: any) {
+    console.error("Error updating user:", error);
+    throw new Error(
+      error.response?.data?.message ||
+        "An error occurred while updating the user"
     );
   }
 };

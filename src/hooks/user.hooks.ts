@@ -3,9 +3,16 @@ import {
   getAllUsers,
   getSingleUser,
   suspendUser,
+  updateUser,
 } from "@/services/userServices";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
+
+interface IUpdateUser {
+  id: string;
+  data: FieldValues;
+}
 
 export const useDeleteUser = () => {
   return useMutation<any, Error, string>({
@@ -26,6 +33,19 @@ export const useSuspendUser = () => {
     mutationFn: async (id) => await suspendUser(id),
     onSuccess: () => {
       toast.success("User suspended successfully");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+export const useUpdateUser = () => {
+  return useMutation<any, Error, IUpdateUser>({
+    mutationKey: ["UPDATE_USER"],
+    mutationFn: async ({ id, data }) => await updateUser(id, data),
+    onSuccess: () => {
+      toast.success("Data updated successfully");
     },
     onError: (error) => {
       toast.error(error.message);

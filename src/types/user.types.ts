@@ -6,4 +6,6 @@ export interface IUser {
   contactNumber?: string;
   role: string;
   isActive: string;
+  details: string;
+  address: string;
 }
