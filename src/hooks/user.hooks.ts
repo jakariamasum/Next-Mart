@@ -1,5 +1,6 @@
 import {
   deleteleUser,
+  getAllUsers,
   getSingleUser,
   suspendUser,
 } from "@/services/userServices";
@@ -34,7 +35,13 @@ export const useSuspendUser = () => {
 
 export const useGetSingleUser = () => {
   return useQuery({
-    queryKey: ["GET_USER"],
+    queryKey: ["GET_SINGLE_USER"],
     queryFn: async () => await getSingleUser(),
+  });
+};
+export const useGetAllUser = () => {
+  return useQuery({
+    queryKey: ["GET_ALL_USER"],
+    queryFn: async () => await getAllUsers(),
   });
 };

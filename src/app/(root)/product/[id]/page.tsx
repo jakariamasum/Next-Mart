@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getAllProduts, getSingleProduct } from "@/services/productServices";
@@ -14,7 +14,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [quantity, setQuantity] = useState(1);
 
-  useState(() => {
+  useEffect(() => {
     const fetchData = async () => {
       const productData = await getSingleProduct(params.id);
       setProduct(productData);

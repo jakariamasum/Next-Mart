@@ -1,6 +1,8 @@
 import {
   createProduct,
   deleteleProduct,
+  getAllProduts,
+  getSingleProduct,
   getVendorProducts,
   updateProduct,
 } from "@/services/productServices";
@@ -55,5 +57,19 @@ export const useGetVendorProducts = (id: string) => {
   return useQuery({
     queryKey: ["GET_VENDORS_PRODUCT", id],
     queryFn: async () => await getVendorProducts(id),
+  });
+};
+
+export const useGetAllProducts = () => {
+  return useQuery({
+    queryKey: ["GET_ALL_PRODUCTS"],
+    queryFn: async () => await getAllProduts(),
+  });
+};
+
+export const useGetSingleProduct = (id: string) => {
+  return useQuery({
+    queryKey: ["GET_SINGLE_PRODUCT", id],
+    queryFn: async () => await getSingleProduct(id),
   });
 };

@@ -8,7 +8,7 @@ import UsersIcon from "../icons/UsersIcon";
 import OrderIcon from "../icons/OrderIcon";
 import ProductIcon from "../icons/ProductIcon";
 
-const AdminSidebar: React.FC = () => {
+const AdminSidebar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
 

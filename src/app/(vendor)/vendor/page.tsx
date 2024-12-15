@@ -36,7 +36,7 @@ const VendorDashboard = async () => {
               <tr key={product.id} className="hover:bg-gray-50">
                 <td className="border border-gray-300 px-4 py-2">
                   <Image
-                    src={product.images[0]}
+                    src={product?.images[0] || ""}
                     alt={product.name}
                     className="w-16 h-16 object-cover rounded"
                     width={64}

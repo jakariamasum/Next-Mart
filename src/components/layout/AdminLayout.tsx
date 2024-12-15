@@ -1,4 +1,4 @@
-import React from "react";
+import { ReactNode } from "react";
 import Link from "next/link";
 import { getSingleUser } from "@/services/userServices";
 import Logout from "@/components/auth/Logout";
@@ -6,9 +6,7 @@ import AdminSidebar from "../sidebar/AdminSidebar";
 import Image from "next/image";
 import { IUser } from "@/types/user.types";
 
-const AdminLayout: React.FC<{ children: React.ReactNode }> = async ({
-  children,
-}) => {
+const AdminLayout = async ({ children }: { children: ReactNode }) => {
   const user: IUser = await getSingleUser();
 
   return (

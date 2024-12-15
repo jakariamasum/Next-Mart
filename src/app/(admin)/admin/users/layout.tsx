@@ -1,10 +1,10 @@
 import React, { ReactNode } from "react";
 
 const layout = ({
-  users,
+  usersList,
   children,
 }: {
-  users: ReactNode;
+  usersList: ReactNode;
   children: ReactNode;
 }) => {
   return (
@@ -19,7 +19,7 @@ const layout = ({
             <th className="border p-2">Actions</th>
           </tr>
         </thead>
-        {users}
+        {usersList}
       </table>
       {children}
     </div>

@@ -1,10 +1,12 @@
 import {
   createCategory,
   deleteleCategory,
+  getAllCategories,
+  getSingleCategory,
   updateCategory,
 } from "@/services/categoryServices";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -48,5 +50,19 @@ export const useDeleteCategory = () => {
     onError: (error) => {
       toast.error(error.message);
     },
+  });
+};
+
+export const useGetAllCategories = () => {
+  return useQuery({
+    queryKey: ["GET_ALL_CATEGORIES"],
+    queryFn: async () => await getAllCategories(),
+  });
+};
+
+export const useGetSingleCategory = (id: string) => {
+  return useQuery({
+    queryKey: ["GET_VENDORS_PRODUCT", id],
+    queryFn: async () => await getSingleCategory(id),
   });
 };

@@ -7,13 +7,17 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useGetSingleUser } from "@/hooks/user.hooks";
 import { useGetVendorProducts } from "@/hooks/product.hooks";
 import { IProduct } from "@/types/product.type";
+import { useUser } from "@/context/user.context";
+import { useCreateCart } from "@/hooks/cart.hooks";
 
 export default function ShopPage({ params }: { params: { id: string } }) {
+  const { user } = useUser();
   const [isFollowing, setIsFollowing] = useState(false);
   const [followerCount, setFollowerCount] = useState(0);
 
   const { data: vendor } = useGetSingleUser();
   const { data: products } = useGetVendorProducts(params.id);
+  const { mutate: handleCreateCart } = useCreateCart();
   console.log(products, vendor);
 
   const handleFollow = () => {
@@ -23,8 +27,10 @@ export default function ShopPage({ params }: { params: { id: string } }) {
     );
   };
 
-  const handleAddToCart = (productId: string) => {
-    console.log(`Added product ${productId} to cart`);
+  const handleAddToCart = (product_id: string) => {
+    const payload = { user_id: user?.id, product_id };
+    console.log(`Added product ${product_id} to cart`);
+    handleCreateCart(payload);
   };
 
   if (!vendor) {
