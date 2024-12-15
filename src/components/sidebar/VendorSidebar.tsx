@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { BiHome, BiMenu, BiPackage, BiX } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
 import { FiBarChart2, FiSettings, FiShoppingCart } from "react-icons/fi";
 import { SiTarget } from "react-icons/si";
 
@@ -73,6 +74,13 @@ const VendorSidebar = () => {
           >
             <FiSettings className="mr-3" />
             Settings
+          </Link>
+          <Link
+            href="/vendor/profile"
+            className="flex items-center px-4 py-2 hover:bg-gray-700"
+          >
+            <CgProfile className="mr-3" />
+            Profile
           </Link>
         </nav>
       </div>
