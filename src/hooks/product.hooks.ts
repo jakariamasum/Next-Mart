@@ -1,9 +1,10 @@
 import {
   createProduct,
   deleteleProduct,
+  getVendorProducts,
   updateProduct,
 } from "@/services/productServices";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -47,5 +48,12 @@ export const useDeleteProduct = () => {
     onError: (error) => {
       toast.error(error.message);
     },
+  });
+};
+
+export const useGetVendorProducts = () => {
+  return useQuery({
+    queryKey: ["GET_VENDORS_PRODUCT"],
+    queryFn: async () => await getVendorProducts(),
   });
 };

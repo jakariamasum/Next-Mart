@@ -1,5 +1,9 @@
-import { deleteleUser, suspendUser } from "@/services/userServices";
-import { useMutation } from "@tanstack/react-query";
+import {
+  deleteleUser,
+  getSingleUser,
+  suspendUser,
+} from "@/services/userServices";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export const useDeleteUser = () => {
@@ -25,5 +29,12 @@ export const useSuspendUser = () => {
     onError: (error) => {
       toast.error(error.message);
     },
+  });
+};
+
+export const useGetSingleUser = () => {
+  return useQuery({
+    queryKey: ["GET_USER"],
+    queryFn: async () => await getSingleUser(),
   });
 };

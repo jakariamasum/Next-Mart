@@ -40,6 +40,18 @@ export const getSingleProduct = async (id: string) => {
     );
   }
 };
+export const getVendorProducts = async () => {
+  try {
+    const { data } = await axiosInstance.get(`/products/vendors/product`);
+    return data.data;
+  } catch (error: any) {
+    console.error("Error getting products:", error);
+    throw new Error(
+      error.response?.data?.message ||
+        "An error occurred while getting products"
+    );
+  }
+};
 export const updateProduct = async (id: string, payload: FieldValues) => {
   try {
     const { data } = await axiosInstance.put(`/products/${id}`, payload);
