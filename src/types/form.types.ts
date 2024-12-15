@@ -9,6 +9,7 @@ export interface IInput {
 export interface ISelect {
   label: string;
   name: string;
+  required: boolean;
   options: { value: string; label: string }[];
 }
 

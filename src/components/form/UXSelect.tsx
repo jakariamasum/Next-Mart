@@ -1,7 +1,13 @@
 import { ISelect } from "@/types/form.types";
 import { useFormContext } from "react-hook-form";
 
-const UXSelect = ({ label, name, options, ...props }: ISelect) => {
+const UXSelect = ({
+  label,
+  name,
+  options,
+  required = true,
+  ...props
+}: ISelect) => {
   const { register } = useFormContext();
 
   return (
@@ -17,6 +23,7 @@ const UXSelect = ({ label, name, options, ...props }: ISelect) => {
       <select
         {...register(name)}
         id={name}
+        required={required}
         className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
         {...props}
       >

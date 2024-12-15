@@ -61,7 +61,10 @@ const VendorDashboard = async () => {
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   <div className="flex justify-center space-x-2">
-                    <VendorActions product={product} />
+                    <VendorActions
+                      product={product}
+                      categoryItems={categoryItems}
+                    />
                   </div>
                 </td>
               </tr>

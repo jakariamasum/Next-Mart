@@ -1,7 +1,7 @@
 "use client";
 import { envConfig } from "@/config/evgConfig";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 interface IImageInput {
@@ -17,9 +17,16 @@ const UXMultiImageInput = ({
   required = true,
   multiple = true,
 }: IImageInput) => {
-  const { setValue } = useFormContext();
+  const { setValue, getValues } = useFormContext();
   const [uploading, setUploading] = useState(false);
   const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
+
+  useEffect(() => {
+    const defaultValues = getValues(name);
+    if (defaultValues && Array.isArray(defaultValues)) {
+      setUploadedUrls(defaultValues);
+    }
+  }, [name, getValues]);
 
   const handleUpload = async (files: FileList | null) => {
     if (!files) return;
