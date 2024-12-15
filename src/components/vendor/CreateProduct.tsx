@@ -1,7 +1,6 @@
 "use client";
 import { useCreateProduct } from "@/hooks/product.hooks";
 import UXForm from "../form/UXForm";
-import UXImage from "../form/UXImage";
 import UXInput from "../form/UXInput";
 import UXSelect from "../form/UXSelect";
 import Button from "../ui/Button";
@@ -9,6 +8,7 @@ import { FieldValues } from "react-hook-form";
 import { useState } from "react";
 import { IProduct } from "@/types/product.type";
 import Modal from "../modal/Modal";
+import UXMultiImageInput from "../form/UXMultipleImage";
 
 const CreateProduct = ({
   categoryItems,
@@ -37,6 +37,7 @@ const CreateProduct = ({
   const onSubmit = (data: FieldValues) => {
     console.log(data);
     handleCreateProduct(data);
+    setIsModalOpen(false);
   };
   return (
     <div className="container md:mx-auto md:px-4 py-1">
@@ -90,7 +91,11 @@ const CreateProduct = ({
             />
           </div>
           <div>
-            <UXImage name="image" label="Product Image" />
+            <UXMultiImageInput
+              name="images"
+              label="Product Images"
+              multiple={true}
+            />
           </div>
 
           <Button>Add Product</Button>

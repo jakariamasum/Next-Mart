@@ -1,29 +1,14 @@
+import { IProduct } from "@/types/product.type";
 import Image from "next/image";
 import Link from "next/link";
 import { BiStar } from "react-icons/bi";
 
-interface ProductCardProps {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  rating: number;
-  shopName: string;
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({
-  id,
-  name,
-  price,
-  image,
-  rating,
-  shopName,
-}) => {
+const ProductCard: React.FC<IProduct> = ({ id, name, price, images }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
       <Link href={`/product/${id}`}>
         <div className="relative h-48">
-          <Image src={image} alt={name} layout="fill" objectFit="cover" />
+          <Image src={images[0]} alt={name} layout="fill" objectFit="cover" />
         </div>
       </Link>
       <div className="p-4">
@@ -36,13 +21,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <p className="text-gray-600 mt-1">${price.toFixed(2)}</p>
         <div className="flex items-center mt-2">
           <BiStar className="text-yellow-400 fill-current" />
-          <span className="ml-1 text-gray-600">{rating.toFixed(1)}</span>
+          <span className="ml-1 text-gray-600">{4.2}</span>
         </div>
         <Link
-          href={`/shop/${shopName}`}
+          href={`/shop/${name}`}
           className="text-sm text-blue-600 hover:underline mt-2 block"
         >
-          {shopName}
+          {name}
         </Link>
       </div>
     </div>
