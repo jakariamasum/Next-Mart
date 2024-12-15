@@ -1,4 +1,5 @@
 import CategoryActions from "@/components/admin/CategoryActions";
+import CategoryDelete from "@/components/admin/CategoryDelete";
 import { getAllCategories } from "@/services/categoryServices";
 import { ICategory } from "@/types/category.type";
 
@@ -33,9 +34,7 @@ const ProductCategories = async () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <CategoryActions category={category} />
 
-                  <button className="text-red-600 hover:text-red-900">
-                    Delete
-                  </button>
+                  <CategoryDelete id={category.id} />
                 </td>
               </tr>
             ))}
