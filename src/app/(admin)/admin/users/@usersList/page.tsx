@@ -1,6 +1,7 @@
 import UserActions from "@/components/admin/UserActions";
 import { getAllUsers } from "@/services/userServices";
 import { IUser } from "@/types/user.types";
+export const dynamic = "force-dynamic";
 
 const UserManagement = async () => {
   const users: IUser[] = await getAllUsers();

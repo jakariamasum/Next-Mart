@@ -5,6 +5,7 @@ import { getAllProduts } from "@/services/productServices";
 import { ICategory } from "@/types/category.type";
 import { IProduct } from "@/types/product.type";
 import Image from "next/image";
+export const dynamic = "force-dynamic";
 
 const VendorDashboard = async () => {
   const products: IProduct[] = await getAllProduts();

@@ -2,6 +2,8 @@ import CategoryActions from "@/components/admin/CategoryActions";
 import { getAllCategories } from "@/services/categoryServices";
 import { ICategory } from "@/types/category.type";
 
+export const dynamic = "force-dynamic";
+
 const ProductCategories = async () => {
   const categories: ICategory[] = await getAllCategories();
   return (
