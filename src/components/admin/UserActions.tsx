@@ -7,12 +7,14 @@ const UserActions = ({ user }: { user: IUser }) => {
   const { mutate: handleDeleteUser } = useDeleteUser();
   return (
     <div>
-      <button
-        className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
-        onClick={() => handleSuspendUser(user.id)}
-      >
-        Suspend
-      </button>
+      {user.isActive && (
+        <button
+          className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
+          onClick={() => handleSuspendUser(user.id)}
+        >
+          Suspend
+        </button>
+      )}
       <button
         className="bg-red-500 text-white px-2 py-1 rounded"
         onClick={() => handleDeleteUser(user.id)}

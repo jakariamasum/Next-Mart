@@ -1,18 +1,8 @@
 "use server";
 
+import { envConfig } from "@/config/evgConfig";
 import axiosInstance from "@/lib/axiosInstance";
-
-export const getAllUsers = async () => {
-  try {
-    const { data } = await axiosInstance.get(`/users`);
-    return data.data;
-  } catch (error: any) {
-    console.error("Error getting users:", error);
-    throw new Error(
-      error.response?.data?.message || "An error occurred while getting  users"
-    );
-  }
-};
+import { revalidateTag } from "next/cache";
 
 export const getSingleUser = async () => {
   try {
@@ -26,9 +16,25 @@ export const getSingleUser = async () => {
     );
   }
 };
+export const getAllUsers = async () => {
+  const fetchOption = {
+    next: {
+      tags: ["users"],
+    },
+  };
+
+  const res = await fetch(`${envConfig.baseApi}/users`, fetchOption);
+  const result = await res.json();
+  console.log(result);
+  return result.data;
+};
 export const suspendUser = async (id: string) => {
   try {
-    const { data } = await axiosInstance.put(`/users/${id}`);
+    const { data } = await axiosInstance.put(`/users/${id}`, {
+      isActive: false,
+    });
+    revalidateTag("users");
+
     return data.data;
   } catch (error: any) {
     console.error("Error suspending user:", error);
@@ -41,6 +47,8 @@ export const suspendUser = async (id: string) => {
 export const deleteleUser = async (id: string) => {
   try {
     const { data } = await axiosInstance.delete(`/users/${id}`);
+    revalidateTag("users");
+
     return data.data;
   } catch (error: any) {
     console.error("Error deleting user:", error);

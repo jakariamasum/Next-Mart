@@ -25,7 +25,7 @@ export const useSuspendUser = () => {
     mutationKey: ["SUSPEND_USER"],
     mutationFn: async (id) => await suspendUser(id),
     onSuccess: () => {
-      toast.success("User deleted successfully");
+      toast.success("User suspended successfully");
     },
     onError: (error) => {
       toast.error(error.message);

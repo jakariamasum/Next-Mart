@@ -9,7 +9,12 @@ const UserManagement = async () => {
   return (
     <tbody>
       {users?.map((user) => (
-        <tr key={user.id} className="text-center">
+        <tr
+          key={user.id}
+          className={`${
+            user.isActive ? "text-center" : "bg-red-300 text-center"
+          }`}
+        >
           <td className="border p-2">{user.name}</td>
           <td className="border p-2">{user.email}</td>
           <td className="border p-2">{user.role}</td>
