@@ -31,7 +31,7 @@ const ProductCard: React.FC<IProduct> = ({
           <span className="ml-1 text-gray-600">{rating}</span>
         </div>
         <Link
-          href={`/shop/${name}`}
+          href={`/shop/${vendor.id}`}
           className="text-sm text-indigo-600 hover:underline mt-2 block"
         >
           {vendor.name}

@@ -51,9 +51,9 @@ export const useDeleteProduct = () => {
   });
 };
 
-export const useGetVendorProducts = () => {
+export const useGetVendorProducts = (id: string) => {
   return useQuery({
-    queryKey: ["GET_VENDORS_PRODUCT"],
-    queryFn: async () => await getVendorProducts(),
+    queryKey: ["GET_VENDORS_PRODUCT", id],
+    queryFn: async () => await getVendorProducts(id),
   });
 };

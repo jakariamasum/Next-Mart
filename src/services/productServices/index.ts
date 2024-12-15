@@ -40,9 +40,9 @@ export const getSingleProduct = async (id: string) => {
     );
   }
 };
-export const getVendorProducts = async () => {
+export const getVendorProducts = async (id: string) => {
   try {
-    const { data } = await axiosInstance.get(`/products/vendors/product`);
+    const { data } = await axiosInstance.get(`/products/vendors/product/${id}`);
     return data.data;
   } catch (error: any) {
     console.error("Error getting products:", error);

@@ -8,12 +8,12 @@ import { useGetSingleUser } from "@/hooks/user.hooks";
 import { useGetVendorProducts } from "@/hooks/product.hooks";
 import { IProduct } from "@/types/product.type";
 
-export default function ShopPage() {
+export default function ShopPage({ params }: { params: { id: string } }) {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followerCount, setFollowerCount] = useState(0);
 
   const { data: vendor } = useGetSingleUser();
-  const { data: products } = useGetVendorProducts();
+  const { data: products } = useGetVendorProducts(params.id);
   console.log(products, vendor);
 
   const handleFollow = () => {
