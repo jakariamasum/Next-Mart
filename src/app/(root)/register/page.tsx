@@ -9,6 +9,7 @@ import UXInput from "@/components/form/UXInput";
 import UXImage from "@/components/form/UXImage";
 import Button from "@/components/ui/Button";
 import { useUserRegistration } from "@/hooks/auth.hooks";
+import UXSelect from "@/components/form/UXSelect";
 
 const Register = () => {
   const { mutate: handleRegister } = useUserRegistration();
@@ -55,6 +56,15 @@ const Register = () => {
               name="image"
               label="Profile Photo (optional)"
               required={false}
+            />
+            <UXSelect
+              name="role"
+              label="Select Role"
+              options={[
+                { value: "USER", label: "User" },
+                { value: "ADMIN", label: "Admin" },
+                { value: "VENDOR", label: "Vendor" },
+              ]}
             />
           </div>
 
