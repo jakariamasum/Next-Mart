@@ -9,6 +9,7 @@ import { useState } from "react";
 import { IProduct } from "@/types/product.type";
 import Modal from "../modal/Modal";
 import UXMultiImageInput from "../form/UXMultipleImage";
+import { useUser } from "@/context/user.context";
 
 const CreateProduct = ({
   categoryItems,
@@ -16,6 +17,8 @@ const CreateProduct = ({
   categoryItems: { value: string; label: string }[];
 }) => {
   const { mutate: handleCreateProduct } = useCreateProduct();
+  const { user } = useUser();
+  console.log(user);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<IProduct | null>(null);
@@ -35,8 +38,9 @@ const CreateProduct = ({
     setEditingProduct(null);
   };
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    handleCreateProduct(data);
+    const payload = { ...data, vendor_id: user?.id, rating: 0 };
+    console.log(payload);
+    handleCreateProduct(payload);
     setIsModalOpen(false);
   };
   return (
